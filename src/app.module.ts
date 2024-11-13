@@ -1,11 +1,29 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { DatabaseModule } from './modules/typeorm/database.module';
+import { JwtModule } from '@nestjs/jwt';
+
+import { DatabaseModule } from './modules/database/database.module';
+
+import { AuthModule } from './modules/auth/auth.module';
+import { SessionModule } from './modules/session/session.module';
+import { UserModule } from './modules/user/user.module';
 
 @Module({
-  imports: [DatabaseModule],
-  controllers: [AppController],
-  providers: [AppService],
+  imports: [
+    JwtModule.register({
+      global: true,
+      secret: process.env.JWT_SECRET,
+      signOptions: {
+        expiresIn: process.env.JWT_EXPIRATION
+      }
+    }),
+    DatabaseModule,
+    UserModule,
+    SessionModule,
+    AuthModule
+  ]
 })
-export class AppModule {}
+export class AppModule {
+  constructor() {
+    console.log(process.env.JWT_SECRET)
+  }
+}

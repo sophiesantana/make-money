@@ -12,7 +12,7 @@ async function bootstrap() {
     .addTag('Transferencia de Saldo')
     .build();
   const documentFactory = () => SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('api', app, documentFactory);
+  SwaggerModule.setup('swagger', app, documentFactory);
 
   await app.listen(process.env.BACKEND_PORT);
 }
