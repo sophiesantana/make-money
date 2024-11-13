@@ -22,8 +22,4 @@ import { UserModule } from './modules/user/user.module';
     AuthModule
   ]
 })
-export class AppModule {
-  constructor() {
-    console.log(process.env.JWT_SECRET)
-  }
-}
+export class AppModule { }

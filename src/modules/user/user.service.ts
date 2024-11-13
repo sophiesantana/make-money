@@ -28,10 +28,6 @@ export class UserService {
     return data;
   }
 
-  findAll() {
-    return `This action returns all user`;
-  }
-
   async findByUsername(username: string) {
     return await this.userRepository.findOne({
       where: {
